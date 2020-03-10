@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post">
+{{form.as_p}}
+{% csrf_token %}
+<input type="submit" value="登録">
+</form>
+{% endblock content %}
