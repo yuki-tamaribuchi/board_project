@@ -12,3 +12,12 @@ account/migrations/__init__.py
 account/__init__.py
 account/apps.py
 account/tests.py
+account/__pycache__/__init__.cpython-36.pyc
+account/__pycache__/admin.cpython-36.pyc
+account/__pycache__/models.cpython-36.pyc
+account/migrations/__pycache__/__init__.cpython-36.pyc
+board/__pycache__/__init__.cpython-36.pyc
+board/__pycache__/admin.cpython-36.pyc
+board/__pycache__/models.cpython-36.pyc
+board/migrations/__pycache__/__init__.cpython-36.pyc
+board_project/__pycache__/wsgi.cpython-36.pyc
