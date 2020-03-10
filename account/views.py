@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView,DeleteView
+from django.views.generic import CreateView,DetailView
 from .forms import SignUpForm,RegistProfileForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
+from .models import Profile
 
 # Create your views here.
 class SignUp(CreateView):
@@ -29,3 +30,8 @@ class RegistProfileView(CreateView):
         profile.save()
         self.object=profile
         return HttpResponseRedirect(self.get_success_url())
+
+    
+class ProfileDetailView(DetailView):
+    model=Profile
+    template_name='profiledetail.html'
