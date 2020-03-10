@@ -5,6 +5,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from .models import Profile
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 class SignUp(CreateView):
@@ -34,4 +37,7 @@ class RegistProfileView(CreateView):
     
 class ProfileDetailView(DetailView):
     model=Profile
-    template_name='profiledetail.html'
+    template_name='account/profiledetail.html'
+
+    def get_object(self):
+        return get_object_or_404(Profile,user__username=self.kwargs['username'])
