@@ -2,10 +2,11 @@
 {% block title %}{{profile.handle}} | {{ block.super }}{% endblock title %}
 {% block content %}
 <div class="container">
+<div class="row">
 <p>{{profile.user.username}}</p>
 <p>{{profile.handle}}</p>
 <p>{{profile.location}}</p>
 <p>{{profile.biograph}}</p>
-<p></p>
+</div>
 </div>
 {% endblock content %}
