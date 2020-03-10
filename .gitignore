@@ -1,0 +1,10 @@
+board_project/__pycache__/__init__.cpython-36.pyc
+board_project/__pycache__/settings.cpython-36.pyc
+board_project/__pycache__/urls.cpython-36.pyc
+board_project/wsgi.py
+board_project/asgi.py
+board_project/__init__.py
+board/migrations/__init__.py
+board/tests.py
+board/__init__.py
+manage.py
