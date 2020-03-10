@@ -56,7 +56,7 @@ ROOT_URLCONF = 'board_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +82,9 @@ DATABASES = {
         'USER': 'board_admin',
         'HOST': 'localhost',
         'PASSWORD': 'password',
+        'OPTIONS':{
+            'charset':'utf8mb4',
+        }
     }
 }
 
