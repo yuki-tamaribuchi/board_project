@@ -8,3 +8,7 @@ board/migrations/__init__.py
 board/tests.py
 board/__init__.py
 manage.py
+account/migrations/__init__.py
+account/__init__.py
+account/apps.py
+account/tests.py
