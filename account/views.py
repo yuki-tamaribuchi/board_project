@@ -50,10 +50,9 @@ class LoginView(View):
             username=form.cleaned_data.get('username')
             user=User.objects.get(username=username)
             login(request,user)
-            return redirect('/')
+            return redirect('board:index')
         return render(request,'account/login.html',{'form':form,})
 
     def get(self,request,*args,**kwargs):
         form=LoginForm(request.POST)
         return render(request,'account/login.html',{'form':form,})
-        
