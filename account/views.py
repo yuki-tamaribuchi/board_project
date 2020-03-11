@@ -63,7 +63,7 @@ class ProfileUpdateView(UpdateView):
     fields=('handle','location','biograph')
 
     def get_object(self):
-        return get_object_or_404(Profile,user__username=self.kwargs['username'])
+        return get_object_or_404(Profile,user__username=self.request.user)
 
     def get_success_url(self):
         return reverse('board:index')
