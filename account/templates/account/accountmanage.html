@@ -3,6 +3,9 @@
 <div class="container">
     <div class="row">
         <div class="col">
+            <p>{{ request.user}}</p>
+            <a href="{% url 'account:login' %}">ログイン</a>
+            <a href="{% url 'account:logout' %}">ログアウト</a>
             <a href="{% url 'account:update' %}">プロフィールの更新</a>
         </div>
     </div>
