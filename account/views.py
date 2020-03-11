@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.views.generic import CreateView,DetailView
-from .forms import SignUpForm,RegistProfileForm
+from django.shortcuts import render,redirect
+from django.views.generic import CreateView,DetailView,View
+from .forms import SignUpForm,RegistProfileForm,LoginForm
 from django.urls import reverse_lazy
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
@@ -41,3 +41,19 @@ class ProfileDetailView(DetailView):
 
     def get_object(self):
         return get_object_or_404(Profile,user__username=self.kwargs['username'])
+
+
+class LoginView(View):
+    def post(self,request,*arg,**kwargs):
+        form=LoginForm(data=request.POST)
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            user=User.objects.get(username=username)
+            login(request,user)
+            return redirect('/')
+        return render(request,'account/login.html',{'form':form,})
+
+    def get(self,request,*args,**kwargs):
+        form=LoginForm(request.POST)
+        return render(request,'account/login.html',{'form':form,})
+        
