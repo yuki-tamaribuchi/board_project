@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from django.views.generic import CreateView,DetailView,View
+from django.views.generic import CreateView,DetailView,View,UpdateView,TemplateView
 from .forms import SignUpForm,RegistProfileForm,LoginForm
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
 from .models import Profile
@@ -56,3 +56,25 @@ class LoginView(View):
     def get(self,request,*args,**kwargs):
         form=LoginForm(request.POST)
         return render(request,'account/login.html',{'form':form,})
+
+class ProfileUpdateView(UpdateView):
+    template_name='account/profileupdate.html'
+    model=Profile
+    fields=('handle','location','biograph')
+
+    def get_object(self):
+        return get_object_or_404(Profile,user__username=self.kwargs['username'])
+
+    def get_success_url(self):
+        return reverse('board:index')
+
+    def get_form(self):
+        form=super(ProfileUpdateView,self).get_form()
+        form.fields['handle'].label='ハンドルネーム'
+        form.fields['location'].label='場所'
+        form.fields['biograph'].label='自己紹介'
+        return form
+
+
+class AccountManageView(TemplateView):
+    template_name='account/accountmanage.html'
