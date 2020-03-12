@@ -8,6 +8,8 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 # Create your views here.
 class SignUp(CreateView):
@@ -22,7 +24,7 @@ class SignUp(CreateView):
         return HttpResponseRedirect(self.get_success_url())
         
 
-class RegistProfileView(CreateView):
+class RegistProfileView(CreateView,LoginRequiredMixin):
     form_class=RegistProfileForm
     template_name='account/registprofile.html'
     success_url=reverse_lazy('top')
@@ -57,7 +59,8 @@ class LoginView(View):
         form=LoginForm(request.POST)
         return render(request,'account/login.html',{'form':form,})
 
-class ProfileUpdateView(UpdateView):
+
+class ProfileUpdateView(UpdateView,LoginRequiredMixin):
     template_name='account/profileupdate.html'
     model=Profile
     fields=('handle','location','biograph')
