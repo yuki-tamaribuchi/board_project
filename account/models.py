@@ -9,4 +9,4 @@ class Profile(models.Model):
     biograph = models.CharField(max_length=200)
 
     def __str__(self):
-        return user
+        return self.user
