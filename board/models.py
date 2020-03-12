@@ -7,4 +7,4 @@ class Topic(models.Model):
     date_time=models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return "%s/%s" % (self.content,self.user)
+        return '%s/%s' % (self.content,self.user)
