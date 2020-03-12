@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        {% for topic in topics %}
+        <div class="col-8 p-4 bg-light mx-auto">
+            <p>{{topic.user.user}} | {{topic.user.handle}}</p>
+            <p>{{topic.content}}</p>
+            <p>{{topic.date_time|date:"m/d"}}</p>
+       </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
