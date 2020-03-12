@@ -36,3 +36,4 @@ board/migrations/__pycache__/0002_topic_date_time.cpython-36.pyc
 .gitignore
 board/migrations/__pycache__/0003_auto_20200312_1351.cpython-36.pyc
 board/migrations/0003_auto_20200312_1351.py
+board/__pycache__/forms.cpython-36.pyc
