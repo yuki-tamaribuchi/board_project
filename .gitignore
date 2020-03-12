@@ -37,3 +37,11 @@ board/migrations/__pycache__/0002_topic_date_time.cpython-36.pyc
 board/migrations/__pycache__/0003_auto_20200312_1351.cpython-36.pyc
 board/migrations/0003_auto_20200312_1351.py
 board/__pycache__/forms.cpython-36.pyc
+account/migrations/0002_follow.py
+account/migrations/0003_delete_follow.py
+account/migrations/0004_follow.py
+account/migrations/0005_delete_follow.py
+account/migrations/__pycache__/0002_follow.cpython-36.pyc
+account/migrations/__pycache__/0003_delete_follow.cpython-36.pyc
+account/migrations/__pycache__/0004_follow.cpython-36.pyc
+account/migrations/__pycache__/0005_delete_follow.cpython-36.pyc
