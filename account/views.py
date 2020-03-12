@@ -27,7 +27,7 @@ class SignUp(CreateView):
 class RegistProfileView(CreateView,LoginRequiredMixin):
     form_class=RegistProfileForm
     template_name='account/registprofile.html'
-    success_url=reverse_lazy('top')
+    success_url=reverse_lazy('account:manage')
 
     def form_valid(self, form):
         profile=form.save(commit=False)
