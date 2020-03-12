@@ -2,11 +2,14 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col">
-            <p>{{ request.user}}</p>
-            <a href="{% url 'account:login' %}">ログイン</a>
+        <div class="col mt-5">
+            {% if user.id %}
+            <p>ログイン中：{{ request.user}}</p>
             <a href="{% url 'account:logout' %}">ログアウト</a>
             <a href="{% url 'account:update' %}">プロフィールの更新</a>
+            {% else %}
+            <a href="{% url 'account:login' %}">ログイン</a>
+            {% endif %}
         </div>
     </div>
 </div>

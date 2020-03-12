@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<form method="post" novalidate>
-{% csrf_token %}
-{{form.as_p}}
-<input type="submit" value="更新">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col mt-5">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="更新">
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-{% if form.errors %}
-<p>ユーザIDかパスワードが間違っています</p>
-{% endif %}
-
-<form method="POST" action="{% url 'account:login' %}">
-{% csrf_token %}
-<label>ユーザID</label>
-{{form.username}}
-{{form.username.errors}}
-<label>パスワード</label>
-{{form.password}}
-{{form.password.errors}}
-<input type="submit" value="ログイン">
-</form>
+    <div class="row">
+        <div class="col-5 mt-5">
+            {% if form.errors %}
+            <p>ユーザIDかパスワードが間違っています</p>
+            {% endif %}
+            <form method="POST" action="{% url 'account:login' %}">
+                {% csrf_token %}
+                <label>ユーザID</label>
+                {{form.username}}
+                {{form.username.errors}}
+                <label>パスワード</label>
+                {{form.password}}
+                {{form.password.errors}}
+                <input type="submit" value="ログイン">
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock content %}
