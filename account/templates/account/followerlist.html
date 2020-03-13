@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{userhandle}}({{username}})さんのフォロワー | {{block.super}}{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        {% for f in follower %}
+        <div class="col-8 mx-auto">
+            {{f.following_user.handle}}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
