@@ -2,13 +2,13 @@
 {% block title %}{{profile.handle}} | {{ block.super }}{% endblock title %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <p>{{profile.user.username}}</p>
-        <p>{{profile.handle}}</p>
-        <p>{{profile.location}}</p>
-        <p>{{profile.biograph}}</p>
-        <p><a href="{% url 'account:followinglist' profile.user.username %}">フォロー</a></p>
-        <p><a href="{% url 'account:followerlist' profile.user.username %}">フォロワー</a></p>
+    <div class="row mt-5">
+        <div class="col">
+            <p>{{profile.handle}} {{profile.user.username}}</p>
+            <p>{{profile.location}}</p>
+            <p>{{profile.biograph}}</p>
+            <p><a href="{% url 'account:followinglist' profile.user.username %}">フォロー</a> <a href="{% url 'account:followerlist' profile.user.username %}">フォロワー</a></p>
+        </div>
     </div>
 </div>
 {% endblock content %}
