@@ -98,7 +98,8 @@ class FollowingListView(ListView):
     def get_context_data(self,**kwargs):
         context= super().get_context_data(**kwargs)
         getusername=Profile.objects.get(user__username=self.kwargs['username'])
-        context['username']=getusername.handle
+        context['username']=self.kwargs['username']
+        context['userhandle']=getusername.handle
         print("Context=",context)
         return context
     
