@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} | {{block.super}}{% endblock title %}
+{% block content %}
+
+{% for f in follow  %}
+    {{f.followed_user.handle}}
+{% endfor %}
+
+{% endblock content %}
