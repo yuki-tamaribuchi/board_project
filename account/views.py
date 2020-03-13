@@ -104,4 +104,18 @@ class FollowingListView(ListView):
         return context
     
         
-        
+class FollowerListView(ListView):
+    model=Follow
+    template_name='account/followerlist.html'
+    context_object_name='follower'
+
+    def get_queryset(self):
+        queryset=Follow.objects.filter(followed_user__user__username=self.kwargs['username'])
+        return queryset
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        getusername=Profile.objects.get(user__username=self.kwargs['username'])
+        context['username']=self.kwargs['username']
+        context['userhandle']=getusername.handle
+        return context
