@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
 from account.models import Profile
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -23,7 +24,7 @@ class TopicDetailView(DetailView):
     context_oject_name='topic'
 
 
-class TopicCreateView(CreateView):
+class TopicCreateView(CreateView,LoginRequiredMixin):
     form_class=TopicCreateForm
     template_name='board/topiccreate.html'
     
