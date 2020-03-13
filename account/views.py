@@ -88,17 +88,18 @@ class FollowingListView(ListView):
     template_name='account/followinglist.html'
     context_object_name='follow'
 
-    #def get_queryset(self):
+    def get_queryset(self):
         #queryset=Follow.objects.get(following_user__user__username=self.kwargs['username'])
         
-        #queryset=Follow.objects.filter(following_user__user__username=self.kwargs['username'])
-        #print(queryset)
-        #return queryset
+        queryset=Follow.objects.filter(following_user__user__username=self.kwargs['username'])
+        print(queryset)
+        return queryset
 
     def get_context_data(self,**kwargs):
         context= super().get_context_data(**kwargs)
         getusername=Profile.objects.get(user__username=self.kwargs['username'])
         context['username']=getusername.handle
+        print("Context=",context)
         return context
     
         
