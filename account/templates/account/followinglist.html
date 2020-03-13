@@ -1,9 +1,14 @@
 {% extends "base.html" %}
-{% block title %} | {{block.super}}{% endblock title %}
+{% block title %}{{userhandle}}({{username}})がフォロー中のユーザ | {{block.super}}{% endblock title %}
 {% block content %}
-
-{% for f in follow  %}
-    {{f.followed_user.handle}}
-{% endfor %}
-
+<div class="container">
+    <div class="row mt-5">
+        {% for f in follow  %}
+        <div class="col-8 mx-auto">
+            <p>{{f.followed_user.handle}}</p>
+            
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
