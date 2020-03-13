@@ -19,12 +19,15 @@
         <li class="nav-item">
             {% if user.id %}
             <a class="nav-link" href="{% url 'account:detail' user.username %}">ログイン中:{{user.username}}</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'account:signup' %}">新規登録</a>
             {% endif %}
         </li>
         <li class="nav-item">
             {% if user.id %}
             <a class="nav-link" href="{% url 'account:manage' %}">アカウント管理</a>
             {% else %}
+
             <a class="nav-link" href="{% url 'account:login' %}">ログイン</a>
             {% endif %}
             
