@@ -54,3 +54,6 @@ account/migrations/0005_delete_follow.py
 >>>>>>> develop
 account/migrations/__pycache__/0004_follow.cpython-36.pyc
 account/migrations/__pycache__/0005_delete_follow.cpython-36.pyc
+account/migrations/0006_follow.py
+.gitignore
+account/migrations/__pycache__/0006_follow.cpython-36.pyc
