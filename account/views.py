@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
-from django.views.generic import CreateView,DetailView,View,UpdateView,TemplateView
+from django.views.generic import CreateView,DetailView,View,UpdateView,TemplateView,ListView
 from .forms import SignUpForm,RegistProfileForm,LoginForm
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth import login
 from django.http import HttpResponseRedirect
-from .models import Profile
+from .models import Profile,Follow
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.shortcuts import get_object_or_404
@@ -81,3 +81,20 @@ class ProfileUpdateView(UpdateView,LoginRequiredMixin):
 
 class AccountManageView(TemplateView):
     template_name='account/accountmanage.html'
+
+
+class FollowingListView(ListView):
+    model=Follow
+    template_name='account/followinglist.html'
+    context_object_name='follow'
+
+    def get_queryset(self):
+        #queryset=Follow.objects.get(following_user__user__username=self.kwargs['username'])
+        
+        queryset=Follow.objects.filter(following_user__user__username=self.kwargs['username'])
+        print(queryset)
+        return queryset
+
+    
+        
+        
