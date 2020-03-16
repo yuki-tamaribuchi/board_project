@@ -57,6 +57,10 @@ class ProfileDetailView(DetailView):
         follow=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
 
         context['is_following']=follow
+        if followed_user==following_user:
+            context['is_sameuser']=True
+        else:
+            context['is_sameuser']=False
 
         return context
 
