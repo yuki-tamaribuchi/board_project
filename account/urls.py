@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SignUp,RegistProfileView,ProfileDetailView,LoginView,ProfileUpdateView,AccountManageView,FollowingListView,FollowerListView
+from .views import SignUp,RegistProfileView,ProfileDetailView,LoginView,ProfileUpdateView,AccountManageView,FollowingListView,FollowerListView,FollowProcess
 from django.contrib.auth import views as auth_views
 
 app_name='account'
@@ -13,4 +13,5 @@ urlpatterns = [
     path('manage/',AccountManageView.as_view(),name='manage'),
     path('<str:username>/following/',FollowingListView.as_view(),name='followinglist'),
     path('<str:username>/follower/',FollowerListView.as_view(),name='followerlist'),
+    path('follow/<str:username>',FollowProcess.as_view(),name='follow'),
 ]
