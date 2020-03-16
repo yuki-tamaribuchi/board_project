@@ -9,11 +9,15 @@
             <p>{{profile.biograph}}</p>
             <p><a href="{% url 'account:followinglist' profile.user.username %}">フォロー({{following_count}})</a> <a href="{% url 'account:followerlist' profile.user.username %}">フォロワー({{followed_count}})</a></p>
             <p><a href="{% url 'account:follow' profile.user.username %}">
-            {% if is_following %}
-            アンフォロー
+            {% if is_sameuser %}
             {% else %}
-            フォロー
+                {% if is_following %}
+                アンフォロー
+                {% else %}
+                フォロー
+                {% endif %}
             {% endif %}
+            
             </a></p>
         </div>
     </div>
