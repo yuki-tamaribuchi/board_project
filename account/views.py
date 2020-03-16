@@ -40,10 +40,18 @@ class RegistProfileView(CreateView,LoginRequiredMixin):
 class ProfileDetailView(DetailView):
     model=Profile
     template_name='account/profiledetail.html'
+    context_object_name='profile'
 
     def get_object(self):
         return get_object_or_404(Profile,user__username=self.kwargs['username'])
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        following_count=Follow.objects.filter(following_user__user=self.request.user).count()
+        context['following_count']=following_count
+        return context
+
+        
 
 class LoginView(View):
     def post(self,request,*arg,**kwargs):
