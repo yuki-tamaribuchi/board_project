@@ -70,7 +70,7 @@ class LoginView(View):
         return render(request,'account/login.html',{'form':form,})
 
 
-class ProfileUpdateView(UpdateView,LoginRequiredMixin):
+class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     template_name='account/profileupdate.html'
     model=Profile
     fields=('handle','location','biograph')
