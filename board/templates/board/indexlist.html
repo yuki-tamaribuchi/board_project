@@ -2,13 +2,20 @@
 {% block content %}
 <div class="container">
     <div class="row mt-5">
-        {% for topic in topics %}
-        <div class="col-8 p-4 m-2 bg-light mx-auto">
-            <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
-            <p><a href="{% url 'board:detail' topic.id %}">{{topic.content}}</a></p>
-            <p>{{topic.date_time|date:"m/d"}}</p>
-       </div>
-        {% endfor %}
+        {% if topics %}
+            {% for topic in topics %}
+            <div class="col-8 p-4 m-2 bg-light mx-auto">
+                <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
+                <p><a href="{% url 'board:detail' topic.id %}">{{topic.content}}</a></p>
+                <p>{{topic.date_time|date:"m/d"}}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>表示するトピックがありません．フォローしましょう．</p>
+        {% endif %}
+
+
+        
     </div>
 </div>
 {% endblock content %}
