@@ -128,3 +128,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGOUT_REDIRECT_URL='board:index'
+LOGIN_URL='account:login'
