@@ -4,7 +4,7 @@ from .models import Topic
 from django.urls import reverse_lazy
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
-from account.models import Profile
+from account.models import Profile,Follow
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
@@ -12,10 +12,16 @@ class IndexView(TemplateView):
     template_name="board/index.html"
 
 
-class IndexListView(ListView):
+class IndexListView(LoginRequiredMixin,ListView):
     model=Topic
     context_object_name='topics'
     template_name='board/indexlist.html'
+
+    def get_queryset(self):
+        followed_user=Follow.objects.filter(following_user__user=self.request.user).values_list('followed_user',flat=False)
+        queryset=Topic.objects.filter(user__user__in=followed_user)
+        return queryset
+
 
 
 class TopicDetailView(DetailView):
@@ -24,7 +30,7 @@ class TopicDetailView(DetailView):
     context_oject_name='topic'
 
 
-class TopicCreateView(CreateView,LoginRequiredMixin):
+class TopicCreateView(LoginRequiredMixin,CreateView):
     form_class=TopicCreateForm
     template_name='board/topiccreate.html'
     
