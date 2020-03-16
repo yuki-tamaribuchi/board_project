@@ -147,9 +147,11 @@ class FollowProcess(LoginRequiredMixin,View):
         following_user=get_object_or_404(Profile,user__username=self.request.user)
         follow=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
         
-
-        if follow.exists():
-            follow.delete()
+        if followed_user==following_user:
+            return redirect('account:detail',username=self.kwargs['username'])
         else:
-            Follow.objects.create(followed_user=followed_user,following_user=following_user)
-        return redirect('account:detail', username=self.kwargs['username'])
+            if follow.exists():
+                follow.delete()
+            else:
+                Follow.objects.create(followed_user=followed_user,following_user=following_user)
+            return redirect('account:detail', username=self.kwargs['username'])
