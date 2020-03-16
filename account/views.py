@@ -51,6 +51,13 @@ class ProfileDetailView(DetailView):
         context['following_count']=following_count
         followed_count=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
         context['followed_count']=followed_count
+
+        followed_user=get_object_or_404(Profile,user__username=self.kwargs['username'])
+        following_user=get_object_or_404(Profile,user__username=self.request.user)
+        follow=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
+
+        context['is_following']=follow
+
         return context
 
         
