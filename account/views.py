@@ -47,9 +47,9 @@ class ProfileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        following_count=Follow.objects.filter(following_user__user=self.request.user).count()
+        following_count=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
         context['following_count']=following_count
-        followed_count=Follow.objects.filter(followed_user__user=self.request.user).count()
+        followed_count=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
         context['followed_count']=followed_count
         return context
 
