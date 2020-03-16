@@ -4,11 +4,16 @@
 {% block content %}
 <div class="container">
     <div class="row mt-5">
+    {% if follower %}
         {% for f in follower %}
-        <div class="col-8 mx-auto">
-            {{f.following_user.handle}}
-        </div>
+            <div class="col-8 mx-auto">
+                <p><a href="{% url 'account:detail' f.following_user.user.username %}">{{f.following_user.handle}}</a></p>
+            </div>
         {% endfor %}
+    {% else %}
+    <p>{{userhandle}}さんは，誰からもフォローされていません．</p>
+    {% endif %}
+        
     </div>
 </div>
 {% endblock content %}
