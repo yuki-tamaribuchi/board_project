@@ -6,6 +6,7 @@ from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
 from account.models import Profile,Follow
 from django.contrib.auth.mixins import LoginRequiredMixin
+from comprehend import main
 
 # Create your views here.
 class IndexView(TemplateView):
@@ -39,6 +40,9 @@ class TopicCreateView(LoginRequiredMixin,CreateView):
 
         new_topic=form.save(commit=False)
         new_topic.user=Profile.objects.get(id=request.user.id)
+        c_result=main(new_topic.content)
+        print(c_result)
         new_topic.save()
+
         url=reverse_lazy('board:indexlist')
         return HttpResponseRedirect(url)
