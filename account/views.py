@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from board.models import Topic
 
 
 # Create your views here.
@@ -47,6 +48,9 @@ class ProfileDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context['topics']=Topic.objects.filter(user__user__username=self.kwargs['username'])
+
         following_count=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
         context['following_count']=following_count
         followed_count=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
@@ -55,7 +59,6 @@ class ProfileDetailView(DetailView):
         followed_user=get_object_or_404(Profile,user__username=self.kwargs['username'])
         following_user=get_object_or_404(Profile,user__username=self.request.user)
         follow=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
-
         context['is_following']=follow
         if followed_user==following_user:
             context['is_sameuser']=True
