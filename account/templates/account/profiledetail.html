@@ -17,8 +17,14 @@
                 フォロー
                 {% endif %}
             {% endif %}
-            
             </a></p>
+        </div>
+        <div class="row">
+            {% for topic in topics %}
+            <div class="col-8 mx-auto p-3">
+            {{topic.content}}
+            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
