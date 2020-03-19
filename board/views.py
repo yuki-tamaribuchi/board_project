@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
-from django.views.generic import TemplateView,ListView,DetailView,CreateView
+from django.views.generic import TemplateView,ListView,DetailView,CreateView,DeleteView
 from .models import Topic
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy,reverse
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
 from account.models import Profile,Follow
@@ -46,3 +46,16 @@ class TopicCreateView(LoginRequiredMixin,CreateView):
 
         url=reverse_lazy('board:indexlist')
         return HttpResponseRedirect(url)
+
+class TopicDeleteView(LoginRequiredMixin,DeleteView):
+    model=Topic
+
+    def get_object(self):
+        delete_object=Topic.objects.get(pk=self.kwargs['pk'])
+        if delete_object.user.user.username==str(self.request.user):
+            return delete_object
+        else:
+            return None
+
+    def get_success_url(self):
+        return reverse('account:detail',kwargs={'username':self.request.user})
