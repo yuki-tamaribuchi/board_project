@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}
+削除しますか？ | {{block.super}}
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if topic %}
+            <form method="post">
+                {% csrf_token %}
+                <p>{{topic.content}}を削除しますか？</p>
+                <input type="submit" value="削除">
+            </form>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
