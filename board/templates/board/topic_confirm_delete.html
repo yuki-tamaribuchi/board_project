@@ -11,6 +11,7 @@
                 {% csrf_token %}
                 <p>{{topic.content}}を削除しますか？</p>
                 <input type="submit" value="削除">
+                <a href="{% url 'account:detail' request.user.username %}"><input type="button" value="キャンセル"></a>
             </form>
             {% endif %}
             
