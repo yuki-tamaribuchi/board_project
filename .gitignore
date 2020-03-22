@@ -58,3 +58,5 @@ account/migrations/0006_follow.py
 .gitignore
 account/migrations/__pycache__/0006_follow.cpython-36.pyc
 __pycache__/comprehend.cpython-36.pyc
+board/migrations/0004_reply.py
+board/migrations/__pycache__/0004_reply.cpython-36.pyc
