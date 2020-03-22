@@ -8,3 +8,11 @@ class Topic(models.Model):
 
     def __str__(self):
         return '%s/%s' % (self.content,self.user)
+
+class Reply(models.Model):
+    reply_to=models.ForeignKey(Topic,on_delete=models.CASCADE,related_name='reply_to')
+    reply_from=models.ForeignKey(Topic,on_delete=models.CASCADE,related_name='reply_from')
+
+
+    def __str__(self):
+        return '%s to %s' % (self.reply_from,self.reply_to)
