@@ -16,3 +16,11 @@ class Reply(models.Model):
 
     def __str__(self):
         return '%s to %s' % (self.reply_from,self.reply_to)
+
+
+class Like(models.Model):
+    user=models.ForeignKey(Profile,on_delete=models.CASCADE)
+    topic=models.ForeignKey(Topic,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%s liked %s' % (self.user.username,self.topic.content)
