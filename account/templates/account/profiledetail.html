@@ -25,8 +25,10 @@
                 <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
                 <p><a href="{% url 'board:detail' topic.id %}">{{topic.content}}</a></p>
                 <p>{{topic.date_time|date:"m/d"}}</p>
+                <p><a href="{% url 'board:reply' topic.id %}">返信する</a>
+                <a href="{% url 'board:detail' topic.id %}">返信を見る</a>
                 {% if is_sameuser %}
-                <p><a href="{% url 'board:delete' topic.id %}">削除</a></p>
+                <a href="{% url 'board:delete' topic.id %}">削除</a></p>
                 {% endif %}
             </div>
             {% endfor %}
