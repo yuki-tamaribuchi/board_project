@@ -6,7 +6,8 @@
         <div class="col-8 mx-auto bg-light">
             <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}} {{topic.user}}</a></p>
             <p>{{topic.content}}</p>
-            <p>{{topic.date_time}}</p>
+            <p class="text-right">{{topic.date_time}}</p>
+            <p><a href="{% url 'board:reply' topic.id %}">返信する</a></p>
         </div>
         <div class="col-8 mx-auto p-4 m-2">
         
