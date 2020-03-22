@@ -7,8 +7,8 @@
         {% for topic in topics %}
         
         <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}} {{topic.user}}</a></p>
-        {{topic.content}}
-        {{topic.date_time}} 
+        <p>{{topic.content}}</p>
+        <p>{{topic.date_time}}</p> 
         
         {% endfor %}
         </div>
