@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from board.models import Topic
+from board.models import Topic,Reply
 
 
 # Create your views here.
