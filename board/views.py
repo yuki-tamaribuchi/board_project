@@ -1,6 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import TemplateView,ListView,DetailView,CreateView,DeleteView
-from .models import Topic
+from .models import Topic,Reply
 from django.urls import reverse_lazy,reverse
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
@@ -10,7 +10,7 @@ from comprehend import main
 
 # Create your views here.
 class IndexView(TemplateView):
-    template_name="board/index.html"
+    template_name='board/index.html'
 
 
 class IndexListView(LoginRequiredMixin,ListView):
@@ -34,6 +34,7 @@ class TopicDetailView(DetailView):
 class TopicCreateView(LoginRequiredMixin,CreateView):
     form_class=TopicCreateForm
     template_name='board/topiccreate.html'
+
     
     def post(self,request):
         form=TopicCreateForm(request.POST)
@@ -46,6 +47,23 @@ class TopicCreateView(LoginRequiredMixin,CreateView):
 
         url=reverse_lazy('board:indexlist')
         return HttpResponseRedirect(url)
+
+
+class ReplyCreateView(CreateView):
+    form_class=TopicCreateForm
+    template_name='board/replycreate.html'
+
+
+    def post(self,request,pk):
+        form=TopicCreateForm(request.POST)
+        new_topic=form.save(commit=False)
+        new_topic.user=Profile.objects.get(id=request.user.id)
+        new_topic.save()
+        Reply.objects.create(reply_to=Topic.objects.get(pk=self.kwargs['pk']),reply_from=Topic.objects.get(pk=new_topic.id))
+
+        url=reverse_lazy('board:indexlist')
+        return HttpResponseRedirect(url)
+
 
 class TopicDeleteView(LoginRequiredMixin,DeleteView):
     model=Topic
