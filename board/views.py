@@ -30,6 +30,14 @@ class TopicDetailView(DetailView):
     template_name='board/detail.html'
     context_oject_name='topic'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        this_topic=Topic.objects.get(pk=self.kwargs['pk'])
+        reply_from_ids=Reply.objects.filter(reply_to_id=this_topic.id).values_list('reply_from',flat=False)
+        print(reply_from_ids)
+        context['replies']=Topic.objects.filter(id__in=reply_from_ids).order_by('-id')
+        return context
+
 
 class TopicCreateView(LoginRequiredMixin,CreateView):
     form_class=TopicCreateForm
