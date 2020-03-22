@@ -9,14 +9,20 @@
             <p>{{topic.date_time}}</p>
         </div>
         <div class="col-8 mx-auto p-4 m-2">
+        
+        {% if replies %}
         <p>このトピックへの返信</p>
-        {% for reply in replies %}
-        <div class="col mx-auto bg-light p-2 m-2">
-        <p><a href="{% url 'account:detail' reply.user %}">{{reply.user.handle}}</a> | {{reply.user.user}}</p>
-        <p><a href="{% url 'board:detail' reply.id %}">{{reply.content}}</a></p>
-        <p>{{topic.date_time|date:"m/d"}}</p>
-        </div>
-        {% endfor %}
+            {% for reply in replies %}
+            <div class="col mx-auto bg-light p-2 m-2">
+                <p><a href="{% url 'account:detail' reply.user %}">{{reply.user.handle}}</a> | {{reply.user.user}}</p>
+                <p><a href="{% url 'board:detail' reply.id %}">{{reply.content}}</a></p>
+                <p>{{topic.date_time|date:"m/d"}}</p>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>このトピックへの返信はありません</p>
+        {% endif %}
+        
         </div>
 
     </div>
