@@ -54,6 +54,12 @@ class ReplyCreateView(CreateView):
     template_name='board/replycreate.html'
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['topics'] = Topic.objects.filter(pk=self.kwargs['pk'])
+        return context
+
+
     def post(self,request,pk):
         form=TopicCreateForm(request.POST)
         new_topic=form.save(commit=False)
