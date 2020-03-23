@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-10 mx-auto">
-            <p>{{profile.handle}} {{profile.user.username}}</p>
-            <p>{{profile.location}}</p>
-            <p>{{profile.biograph}}</p>
+            <p><span style="font-size:30px">{{profile.handle}}</span> | {{profile.user.username}}</p>
+            <p>Loc：{{profile.location}}</p>
+            <p>Bio：{{profile.biograph}}</p>
             <p><a href="{% url 'account:followinglist' profile.user.username %}">フォロー({{following_count}})</a> <a href="{% url 'account:followerlist' profile.user.username %}">フォロワー({{followed_count}})</a></p>
             <p><a href="{% url 'account:follow' profile.user.username %}">
             {% if is_sameuser %}
