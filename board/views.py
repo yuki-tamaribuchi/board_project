@@ -1,6 +1,6 @@
-from django.shortcuts import render,get_object_or_404
-from django.views.generic import TemplateView,ListView,DetailView,CreateView,DeleteView
-from .models import Topic,Reply
+from django.shortcuts import render,get_object_or_404,redirect
+from django.views.generic import TemplateView,ListView,DetailView,CreateView,DeleteView,View
+from .models import Topic,Reply,Like
 from django.urls import reverse_lazy,reverse
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
@@ -36,6 +36,8 @@ class TopicDetailView(DetailView):
         reply_from_ids=Reply.objects.filter(reply_to_id=this_topic.id).values_list('reply_from',flat=False)
         print(reply_from_ids)
         context['replies']=Topic.objects.filter(id__in=reply_from_ids).order_by('-id')
+        user=Profile.objects.get(user=self.request.user)
+        context['liked']=Like.objects.filter(topic=this_topic,user=user)
         return context
 
 
@@ -91,3 +93,18 @@ class TopicDeleteView(LoginRequiredMixin,DeleteView):
 
     def get_success_url(self):
         return reverse('account:detail',kwargs={'username':self.request.user})
+
+
+
+class LikeProcess(LoginRequiredMixin,View):
+
+    def get(self,request,**kwargs):
+        user=Profile.objects.get(user=self.request.user)
+        topic=Topic.objects.get(pk=self.kwargs['pk'])
+        like=Like.objects.filter(user=user,topic=topic)
+        if like.exists():
+            like.delete()
+        else:
+            
+            Like.objects.create(user=user,topic=topic)
+        return redirect('board:detail',pk=self.kwargs['pk'])
