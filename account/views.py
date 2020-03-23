@@ -49,17 +49,19 @@ class ProfileDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        #トピック一覧の取得
         context['topics']=Topic.objects.filter(user__user__username=self.kwargs['username']).order_by('-id')
 
-        following_count=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
-        context['following_count']=following_count
-        followed_count=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
-        context['followed_count']=followed_count
-
+        #フォロー数・フォロワー数の取得
+        context['following_count']=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
+        context['followed_count']=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
+        
+        #フォロー中であるかを取得
         followed_user=get_object_or_404(Profile,user__username=self.kwargs['username'])
         following_user=get_object_or_404(Profile,user__username=self.request.user)
-        follow=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
-        context['is_following']=follow
+        context['is_following']=Follow.objects.filter(followed_user__user__username=followed_user,following_user__user=self.request.user)
+        
+        #自分自身をフォローしないようにするための本人確認データの取得
         if followed_user==following_user:
             context['is_sameuser']=True
         else:
