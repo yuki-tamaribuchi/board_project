@@ -1,64 +1,121 @@
-board_project/__pycache__/__init__.cpython-36.pyc
-board_project/__pycache__/settings.cpython-36.pyc
-board_project/__pycache__/urls.cpython-36.pyc
-board_project/wsgi.py
-board_project/asgi.py
-board_project/__init__.py
-board/migrations/__init__.py
-board/tests.py
-board/__init__.py
-manage.py
-account/migrations/__init__.py
-account/__init__.py
-account/apps.py
-account/tests.py
-account/__pycache__/__init__.cpython-36.pyc
-account/__pycache__/admin.cpython-36.pyc
-account/__pycache__/models.cpython-36.pyc
-account/migrations/__pycache__/__init__.cpython-36.pyc
-board/__pycache__/__init__.cpython-36.pyc
-board/__pycache__/admin.cpython-36.pyc
-board/__pycache__/models.cpython-36.pyc
-board/migrations/__pycache__/__init__.cpython-36.pyc
-board_project/__pycache__/wsgi.cpython-36.pyc
-account/migrations/0001_initial.py
-account/migrations/__pycache__/0001_initial.cpython-36.pyc
-account/__pycache__/forms.cpython-36.pyc
-account/__pycache__/urls.cpython-36.pyc
-account/__pycache__/views.cpython-36.pyc
-board/__pycache__/urls.cpython-36.pyc
-.gitignore
-board/__pycache__/views.cpython-36.pyc
-board/migrations/0001_initial.py
-board/migrations/0002_topic_date_time.py
-board/migrations/__pycache__/0001_initial.cpython-36.pyc
-board/migrations/__pycache__/0002_topic_date_time.cpython-36.pyc
-.gitignore
-board/migrations/__pycache__/0003_auto_20200312_1351.cpython-36.pyc
-board/migrations/0003_auto_20200312_1351.py
-board/__pycache__/forms.cpython-36.pyc
-<<<<<<< HEAD
-account/migrations/0002_follow.py
-account/migrations/0003_delete_follow.py
-account/migrations/0004_follow.py
-account/migrations/0005_delete_follow.py
-account/migrations/__pycache__/0002_follow.cpython-36.pyc
-account/migrations/__pycache__/0003_delete_follow.cpython-36.pyc
-=======
-account/migrations/__pycache__/0002_follow.cpython-36.pyc
-account/migrations/0002_follow.py
-account/migrations/0003_delete_follow.py
-account/migrations/__pycache__/0003_delete_follow.cpython-36.pyc
-account/migrations/0004_follow.py
-account/migrations/0005_delete_follow.py
->>>>>>> develop
-account/migrations/__pycache__/0004_follow.cpython-36.pyc
-account/migrations/__pycache__/0005_delete_follow.cpython-36.pyc
-account/migrations/0006_follow.py
-.gitignore
-account/migrations/__pycache__/0006_follow.cpython-36.pyc
-__pycache__/comprehend.cpython-36.pyc
-board/migrations/0004_reply.py
-board/migrations/__pycache__/0004_reply.cpython-36.pyc
-board/migrations/0005_like.py
-board/migrations/__pycache__/0005_like.cpython-36.pyc
+# Created by https://www.gitignore.io/api/django
+# Edit at https://www.gitignore.io/?templates=django
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media
+
+# If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
+# in your Git repository. Update and uncomment the following line accordingly.
+# <django-project-name>/staticfiles/
+
+### Django.Python Stack ###
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# End of https://www.gitignore.io/api/django
