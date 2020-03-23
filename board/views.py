@@ -20,10 +20,8 @@ class IndexListView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         followed_user=Follow.objects.filter(following_user__user=self.request.user).values_list('followed_user',flat=False)
-        queryset=Topic.objects.filter(user__user__in=followed_user)
+        queryset=Topic.objects.filter(user__user__in=followed_user).order_by('-id')
         return queryset
-
-
 
 class TopicDetailView(DetailView):
     model=Topic
