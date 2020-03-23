@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin,LoginRequiredMixin
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from board.models import Topic,Reply
+from board.models import Topic,Reply,Like
 
 
 # Create your views here.
@@ -55,7 +55,6 @@ class ProfileDetailView(DetailView):
         #トピック一覧の取得(返信含まない)
         reply_topics=Reply.objects.all().values_list('reply_from',flat=False)
         context['topics_wo_reply']=Topic.objects.filter(user__user__username=self.kwargs['username']).exclude(id__in=reply_topics).order_by('-id')
-        print(context['topics_wo_reply'])
 
         #フォロー数・フォロワー数の取得
         context['following_count']=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
@@ -71,6 +70,11 @@ class ProfileDetailView(DetailView):
             context['is_sameuser']=True
         else:
             context['is_sameuser']=False
+
+        #お気に入り一覧の取得
+        liked_topic_id=Like.objects.filter(user__user__username=self.kwargs['username']).values_list('topic_id',flat=False)
+        context['liked_topics']=Topic.objects.filter(id__in=liked_topic_id).order_by('-id')
+        
 
         return context
 
