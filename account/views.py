@@ -52,6 +52,11 @@ class ProfileDetailView(DetailView):
         #トピック一覧の取得(返信含む)
         context['topics_w_reply']=Topic.objects.filter(user__user__username=self.kwargs['username']).order_by('-id')
 
+        #トピック一覧の取得(返信含まない)
+        reply_topics=Reply.objects.all().values_list('reply_from',flat=False)
+        context['topics_wo_reply']=Topic.objects.filter(user__user__username=self.kwargs['username']).exclude(id__in=reply_topics).order_by('-id')
+        print(context['topics_wo_reply'])
+
         #フォロー数・フォロワー数の取得
         context['following_count']=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
         context['followed_count']=Follow.objects.filter(followed_user__user__username=self.kwargs['username']).count()
