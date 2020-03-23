@@ -1,4 +1,4 @@
-from .local_setting import *
+from .local_settings import *
 
 """
 Django settings for board_project project.
