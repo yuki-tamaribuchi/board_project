@@ -3,7 +3,10 @@
 {% block content %}
 <div class="container">
     <div class="row mt-5">
-    {% if follow %}
+        <div class="col-10">
+            <p>{{userhandle}}さんがフォロー</p>
+        </div>
+        {% if follow %}
         {% for f in follow  %}
             <div class="col-8 mx-auto bg-light m-2 p-2">
                 <p><a href="{% url 'account:detail' f.followed_user.user.username %}"><span style="font-size:20px">{{f.followed_user.handle}}</span> {{f.followed_user.user}}</a></p>
@@ -11,7 +14,9 @@
             </div>
         {% endfor %}
     {% else %}
-    <p>{{userhandle}}さんは，誰もフォローしていません．</p>
+    <div class="col-8">
+        <p>{{userhandle}}さんは，誰もフォローしていません．</p>
+    </div>
     {% endif %}
         
     </div>

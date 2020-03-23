@@ -4,16 +4,21 @@
 {% block content %}
 <div class="container">
     <div class="row mt-5">
-    {% if follower %}
+        <div class="col-10">
+            <p>{{userhandle}}さんのフォロワー</p>
+        </div>
+        {% if follower %}
         {% for f in follower %}
-            <div class="col-8 mx-auto bg-light m-2 p-2">
-                <p><a href="{% url 'account:detail' f.following_user.user.username %}"><span style="font-size:20px;">{{f.following_user.handle}}</span> {{f.following_user.user}}</a></p>
-                <p>{{f.following_user.biograph}}</p>
-            </div>
+        <div class="col-8 mx-auto bg-light m-2 p-2">
+            <p><a href="{% url 'account:detail' f.following_user.user.username %}"><span style="font-size:20px;">{{f.following_user.handle}}</span> {{f.following_user.user}}</a></p>
+            <p>{{f.following_user.biograph}}</p>
+        </div>
         {% endfor %}
-    {% else %}
-    <p>{{userhandle}}さんは，誰からもフォローされていません．</p>
-    {% endif %}
+        {% else %}
+        <div class="col-8">
+            <p>{{userhandle}}さんは，誰からもフォローされていません．</p>
+        </div>
+        {% endif %}
         
     </div>
 </div>
