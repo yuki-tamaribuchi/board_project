@@ -5,8 +5,9 @@
     <div class="row mt-5">
     {% if follow %}
         {% for f in follow  %}
-            <div class="col-8 mx-auto">
-                <p><a href="{% url 'account:detail' f.followed_user.user.username %}">{{f.followed_user.handle}}</a></p>
+            <div class="col-8 mx-auto bg-light m-2 p-2">
+                <p><a href="{% url 'account:detail' f.followed_user.user.username %}"><span style="font-size:20px">{{f.followed_user.handle}}</span> {{f.followed_user.user}}</a></p>
+                <p>{{f.followed_user.biograph}}
             </div>
         {% endfor %}
     {% else %}
