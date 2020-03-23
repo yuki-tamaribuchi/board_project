@@ -35,6 +35,7 @@
 
 <div class="tab-content">
     <div id="topics-wo-reply" class="tab-pane active">
+        {% if topics_wo_reply %}
         {% for topic in topics_wo_reply %}
         <div class="col-8 p-4 m-2 bg-light mx-auto">
             <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
@@ -47,8 +48,12 @@
             {% endif %}
         </div>
         {% endfor %}
+        {% else %}
+        <p>表示するトピックがありません</p>
+        {% endif %}
     </div>
     <div id="topics-w-reply" class="tab-pane">
+        {% if topic_w_reply %}
         {% for topic in topics_w_reply %}
         <div class="col-8 p-4 m-2 bg-light mx-auto">
             <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
@@ -61,8 +66,12 @@
             {% endif %}
         </div>
         {% endfor %}
+        {% else %}
+        <p>表示するトピックがありません</p>
+        {% endif %}
     </div>
     <div id="liked-topics" class="tab-pane">
+        {% if liked_topics %}
         {% for topic in liked_topics %}
         <div class="col-8 p-4 m-2 bg-light mx-auto">
             <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
@@ -75,6 +84,9 @@
             {% endif %}
         </div>
         {% endfor %}
+        {% else %}
+        <p>表示するトピックがありません</p>
+        {% endif %}
     </div>
 </div>
 
