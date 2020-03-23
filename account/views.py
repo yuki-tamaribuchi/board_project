@@ -49,8 +49,8 @@ class ProfileDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        #トピック一覧の取得
-        context['topics']=Topic.objects.filter(user__user__username=self.kwargs['username']).order_by('-id')
+        #トピック一覧の取得(返信含む)
+        context['topics_w_reply']=Topic.objects.filter(user__user__username=self.kwargs['username']).order_by('-id')
 
         #フォロー数・フォロワー数の取得
         context['following_count']=Follow.objects.filter(following_user__user__username=self.kwargs['username']).count()
