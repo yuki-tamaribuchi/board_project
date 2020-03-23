@@ -1,3 +1,5 @@
+from .local_setting import *
+
 """
 Django settings for board_project project.
 
@@ -19,11 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9_olw*v^!)(%=1rp0+zb-uxi1^2liw)t!*0j=d!w+l1-6upa)i'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -75,18 +73,6 @@ WSGI_APPLICATION = 'board_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'board_db',
-        'USER': 'board_admin',
-        'HOST': 'localhost',
-        'PASSWORD': 'password',
-        'OPTIONS':{
-            'charset':'utf8mb4',
-        }
-    }
-}
 
 
 # Password validation
