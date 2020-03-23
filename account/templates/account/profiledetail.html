@@ -20,6 +20,7 @@
             </a></p>
         </div>
     </div>
+    <div class="col-8 mx-auto">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a href="#topics-wo-reply" class="nav-link active" data-toggle="tab">トピック一覧</a>
@@ -31,7 +32,7 @@
             <a href="#liked-topics" class="nav-link" data-toggle="tab">お気に入りトピック一覧</a>
         </li>
     </ul>
-</div>
+    </div>
 
 <div class="tab-content">
     <div id="topics-wo-reply" class="tab-pane active">
@@ -49,7 +50,9 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>表示するトピックがありません</p>
+        <div class="col-8 mx-auto">
+            <p>表示するトピックがありません</p>
+        </div>
         {% endif %}
     </div>
     <div id="topics-w-reply" class="tab-pane">
@@ -67,7 +70,9 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>表示するトピックがありません</p>
+        <div class="col-8 mx-auto">
+            <p>表示するトピックがありません</p>
+        </div>
         {% endif %}
     </div>
     <div id="liked-topics" class="tab-pane">
@@ -85,9 +90,14 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>表示するトピックがありません</p>
+        <div class="col-8 mx-auto">
+            <p>表示するトピックがありません</p>
+        </div>
         {% endif %}
     </div>
 </div>
+</div>
+
+
 
 {% endblock content %}
