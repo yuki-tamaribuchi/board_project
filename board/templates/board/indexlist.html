@@ -5,7 +5,7 @@
         {% if topics %}
             {% for topic in topics %}
             <div class="col-8 p-4 m-2 bg-light mx-auto">
-                <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}}</a> | {{topic.user.user}}</p>
+                <p><a href="{% url 'account:detail' topic.user %}"><span style="font-size:18px">{{topic.user.handle}}</span> | {{topic.user.user}}</a></p>
                 <p><a href="{% url 'board:detail' topic.id %}">{{topic.content}}</a></p>
                 <p>{{topic.date_time|date:"m/d"}}</p>
             </div>
