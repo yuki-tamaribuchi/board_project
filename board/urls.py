@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView,IndexListView,TopicDetailView,TopicCreateView,TopicDeleteView,ReplyCreateView
+from .views import IndexView,IndexListView,TopicDetailView,TopicCreateView,TopicDeleteView,ReplyCreateView,LikeProcess
 
 app_name='board'
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('createtopic/',TopicCreateView.as_view(),name='create'),
     path('reply/<int:pk>/',ReplyCreateView.as_view(),name='reply'),
     path('delete/<int:pk>/',TopicDeleteView.as_view(),name='delete'),
+    path('like/<int:pk>/',LikeProcess.as_view(),name='like'),
 ]
