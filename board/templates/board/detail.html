@@ -7,7 +7,15 @@
             <p><a href="{% url 'account:detail' topic.user %}">{{topic.user.handle}} {{topic.user}}</a></p>
             <p>{{topic.content}}</p>
             <p class="text-right">{{topic.date_time}}</p>
-            <p><a href="{% url 'board:reply' topic.id %}">返信する</a></p>
+            <p>
+                <a href="{% url 'board:reply' topic.id %}">返信する</a>
+                {% if liked %}
+                <p><a href="{% url 'board:like' topic.id %}">お気に入り解除</a></p>
+                {% else %}
+                <p><a href="{% url 'board:like' topic.id %}">お気に入り登録</a></p>
+                {% endif %}
+
+            </p>
         </div>
         <div class="col-8 mx-auto p-4 m-2">
         
