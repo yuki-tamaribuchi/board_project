@@ -32,3 +32,4 @@ class Notification(models.Model):
     notify_type=models.CharField(max_length=2,choices=TYPES)
     content=models.CharField(max_length=100)
     recieved_time=models.DateTimeField(auto_now=timezone.now)
+    is_checked=models.BooleanField(default=False)
