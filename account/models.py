@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 class Profile(models.Model):
@@ -18,3 +19,16 @@ class Follow(models.Model):
 
     def __str__(self):
         return '%s is following %s' % (self.following_user,self.followed_user)
+
+
+class Notification(models.Model):
+    TYPES=(
+        ('FL','Followed'),
+        ('RE','Replied'),
+        ('LI','Liked'),
+    )
+
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    notify_type=models.CharField(max_length=2,choices=TYPES)
+    content=models.CharField(max_length=100)
+    recieved_time=models.DateTimeField(auto_now=timezone.now)
