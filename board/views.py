@@ -4,7 +4,7 @@ from .models import Topic,Reply,Like
 from django.urls import reverse_lazy,reverse
 from .forms import TopicCreateForm
 from django.http import HttpResponseRedirect
-from account.models import Profile,Follow
+from account.models import Profile,Follow,Notification
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
@@ -102,6 +102,10 @@ class LikeProcess(LoginRequiredMixin,View):
         if like.exists():
             like.delete()
         else:
-            
             Like.objects.create(user=user,topic=topic)
+            Notification.objects.create(
+                user=topic.user.user,
+                notify_type='LI',
+                content='%sさんが%sのトピックをお気に入りに登録しました．' %(user,topic.content),
+                )
         return redirect('board:detail',pk=self.kwargs['pk'])
